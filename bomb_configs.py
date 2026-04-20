@@ -1,7 +1,7 @@
 #################################
 # CSC 102 Defuse the Bomb Project
 # Configuration file
-# Team: 
+# Team: Ken, Sophia, Tamara
 #################################
 
 # constants
@@ -85,6 +85,9 @@ if (RPi):
 
 ###########
 # functions to generate targets for toggles/wires/keypad/Button
+'''
+if statements until you die
+'''
 ###########
 def genSerial():
     # Create your own logic of making a serial number (if needed)
@@ -105,7 +108,9 @@ def genKeypadTarget():
     # Create your own logic of making a keypad combination number if needed
     # TODO
     return "26863"
-
+'''
+We can take away to serial numre and do the buttons or something
+'''
 # generate the color of the pushbutton (which determines how to defuse the phase)
 button_color = choice(["R", "G", "B"])
 
