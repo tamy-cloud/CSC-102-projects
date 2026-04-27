@@ -5,8 +5,8 @@
 #################################
 
 # constants
-DEBUG = False        # debug mode?
-RPi = False           # is this running on the RPi?
+DEBUG = True         # debug mode?
+RPi = True           # is this running on the RPi?
 SHOW_BUTTONS = False # show the Pause and Quit buttons on the main LCD GUI?
 COUNTDOWN = 300      # the initial bomb countdown value (seconds)
 NUM_STRIKES = 5      # the total strikes allowed before the bomb "explodes"
@@ -44,7 +44,7 @@ if (RPi):
     keypad_keys = ((1, 2, 3), (4, 5, 6), (7, 8, 9), ("*", 0, "#"))
 
     component_keypad = Matrix_Keypad(keypad_rows, keypad_cols, keypad_keys)
-
+    
 # jumper wires
 # 10 pins: 14, 15, 18, 23, 24, 3V3, 3V3, 3V3, 3V3, 3V3
 #          -------JUMP1------  ---------JUMP2---------
@@ -137,6 +137,6 @@ keypad_target = genKeypadTarget()
 button_target = genButtonTarget()
 
 # set the bomb's LCD bootup text
-boot_text = f"*Add your own text here specific to your bomb*\n"\
+boot_text = f"*Welcome your posible inheritance*\n"\
             f"*Serial number: {serial}\n"\
             
