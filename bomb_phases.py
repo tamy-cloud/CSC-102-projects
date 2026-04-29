@@ -233,15 +233,24 @@ class Wires(PhaseThread):
     # runs the thread
     def run(self):
         # TODO
-        pass
+        #Done by tamara
+        self._running = True
+        while (self._running):
+            # get the jumper wire states (0->False, 1->True)
+            self._value = "".join([str(int(pin.value)) for pin in self._component])
+            # check if the binary value matches the target
+            if (int(self._value, 2) == self._target):
+                self._defused = True
+            sleep(0.1)
 
-    # returns the jumper wires state as a string
     def __str__(self):
         if (self._defused):
             return "DEFUSED"
         else:
-            # TODO
-            pass
+            #tamara changed this  so i alctually says that you did something
+            return f"{self._value}/{int(self._value, 2)}" 
+        # returns the jumper wires state as a string
+
 
 # the pushbutton phase
 class Button(PhaseThread):
@@ -302,7 +311,15 @@ class Toggles(PhaseThread):
     # runs the thread
     def run(self):
         # TODO
-        pass
+        #done by tamara
+        self._running = True
+        while (self._running):
+            self._value = [pin.value for pin in self._component]
+            # convert toggle states to a number (binary -> decimal)
+            total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
+            if (total == self._target):
+                self._defused = True
+            sleep(0.1)
 
     # returns the toggle switches state as a string
     def __str__(self):
@@ -310,4 +327,4 @@ class Toggles(PhaseThread):
             return "DEFUSED"
         else:
             # TODO
-            pass
+            return "WRONG!!!"
