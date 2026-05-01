@@ -332,6 +332,7 @@ class Toggles(PhaseThread):
         self._running = True
         while (self._running):
             self._value = [pin.value for pin in self._component]
+            self._value = self._value.reverse()
             # convert toggle states to a number (binary -> decimal)
             total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
             
