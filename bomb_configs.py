@@ -97,7 +97,7 @@ def genSerial():
 def genTogglesTarget():
     # Create your own logic of making a target number for toggles
     # TODO
-    return 20
+    return 10
 
 def genWiresTarget():
     # Create your own logic of making a target number for wires

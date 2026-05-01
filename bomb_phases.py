@@ -252,6 +252,12 @@ class Wires(PhaseThread):
         # returns the jumper wires state as a string
 
 
+def next_color(c):
+    lst = ["R", "G", "B"]
+    current_index = lst.index(c)
+    next_index = (current_index + 1 )% 3
+    return lst[next_index]
+
 # the pushbutton phase
 class Button(PhaseThread):
     def __init__(self, component_state, component_rgb, target, color, timer, name="Button"):
@@ -271,10 +277,18 @@ class Button(PhaseThread):
     def run(self):
         self._running = True
         # set the RGB LED color
-        self._rgb[0].value = False if self._color == "R" else True
-        self._rgb[1].value = False if self._color == "G" else True
-        self._rgb[2].value = False if self._color == "B" else True
+        
         while (self._running):
+            
+            if self._timer._value % 5 == 0:
+                self._color = next_color(self._color)
+            
+            
+            #This actually changes the color based on the color variable
+            self._rgb[0].value = False if self._color == "R" else True
+            self._rgb[1].value = False if self._color == "G" else True
+            self._rgb[2].value = False if self._color == "B" else True
+            
             # get the pushbutton's state
             self._value = self._component.value
             # it is pressed
