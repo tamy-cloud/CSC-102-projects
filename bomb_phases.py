@@ -326,11 +326,19 @@ class Toggles(PhaseThread):
     def run(self):
         # TODO
         #done by tamara
+        
+        old_value = 999
+        
         self._running = True
         while (self._running):
             self._value = [pin.value for pin in self._component]
             # convert toggle states to a number (binary -> decimal)
             total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
+            
+            if total != old_value:
+                old_value = total
+                print(total)
+            
             if (total == self._target):
                 self._defused = True
             sleep(0.1)
