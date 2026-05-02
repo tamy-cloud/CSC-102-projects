@@ -92,7 +92,8 @@ if statements until you die
 def genSerial():
     # Create your own logic of making a serial number (if needed)
     # TODO
-    return "B026DES"
+    
+    return "B026DE5"
 
 def genTogglesTarget():
     # Create your own logic of making a target number for toggles

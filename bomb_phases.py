@@ -203,22 +203,40 @@ class Keypad(PhaseThread):
                 # debounce
                 while (self._component.pressed_keys):
                     try:
-                        # just grab the first key pressed if more than one were pressed
                         key = self._component.pressed_keys[0]
                     except:
                         key = ""
                     sleep(0.1)
-                # log the key
-                self._value += str(key)
-                # the combination is correct -> phase defused
-                if (self._value == self._target):
-                    self._defused = True
-                # the combination is incorrect -> phase failed (strike)
-                elif (self._value != self._target[0:len(self._value)]):
-                    self._failed = True
+                # * clears the current input
+                if (key == "*"):
+                    self._value = ""
+                # only log the key if we haven't reached the full length yet
+                elif (len(self._value) < len(self._target)):
+                    self._value += str(key)
+
+                # only check once the user has typed the full length
+                if (len(self._value) == len(self._target)):
+                    if (self._value == self._target):
+                        # correct -> defused
+                        self._defused = True
+                    else:
+                        # wrong -> flash and reset
+                        self._flash()
+                        self._failed = True
+                        self._value = ""
             sleep(0.1)
 
-    # returns the keypad combination as a string
+
+    def _flash(self):
+        # flash the value on screen 3 times to signal wrong answer
+        original = self._value
+        for _ in range(3):
+            self._value = ""
+            sleep(0.2)
+            self._value = original
+            sleep(0.2)
+        self._value = ""
+        # returns the keypad combination as a string
     def __str__(self):
         if (self._defused):
             return "DEFUSED"
@@ -252,11 +270,11 @@ class Wires(PhaseThread):
         # returns the jumper wires state as a string
 
 
-def next_color(c):
-    lst = ["R", "G", "B"]
-    current_index = lst.index(c)
-    next_index = (current_index + 1 )% 3
-    return lst[next_index]
+    def next_color(c):
+        lst = ["R", "G", "B"]
+        current_index = lst.index(c)
+        next_index = (current_index + 1 )% 3
+        return lst[next_index]
 
 # the pushbutton phase
 class Button(PhaseThread):
@@ -332,22 +350,26 @@ class Toggles(PhaseThread):
         self._running = True
         while (self._running):
             self._value = [pin.value for pin in self._component]
-            self._value = self._value.reverse()
+            #self._value = self._value.reverse()
             # convert toggle states to a number (binary -> decimal)
             total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
             
             if total != old_value:
                 old_value = total
                 print(total)
-            
+                
+            #wait check for 3 seconds
+
             if (total == self._target):
                 self._defused = True
             sleep(0.1)
+            sleep(3)
 
     # returns the toggle switches state as a string
     def __str__(self):
+        sleep(3)
         if (self._defused):
             return "DEFUSED"
         else:
             # TODO
-            return "WRONG!!!"
+            return "Not quite"
