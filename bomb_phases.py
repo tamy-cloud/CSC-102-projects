@@ -363,11 +363,9 @@ class Toggles(PhaseThread):
             if (total == self._target):
                 self._defused = True
             sleep(0.1)
-            sleep(3)
 
     # returns the toggle switches state as a string
     def __str__(self):
-        sleep(3)
         if (self._defused):
             return "DEFUSED"
         else:
