@@ -37,8 +37,11 @@ class Lcd(Frame):
         self.columnconfigure(1, weight=2)
         self.columnconfigure(2, weight=1)
         # the scrolling informative "boot" text
-        self._lscroll = Label(self, bg="black", fg="white", font=("Courier New", 14), text="", justify=LEFT)
-        self._lscroll.grid(row=0, column=0, columnspan=3, sticky=W)
+        self._lscroll = Label(self, bg="black", fg="white", font=("Courier New", 18), text="", justify=LEFT)
+        self._lscroll.grid(row=0, column=0, columnspan=2, sticky=W)
+        # serial number in top right corner
+        self._lserial = Label(self, bg="black", fg="white", font=("Courier New", 18), text=f"Serial: {serial}")
+        self._lserial.grid(row=0, column=2, sticky=E)
         self.pack(fill=BOTH, expand=True)
 
     # sets up the LCD GUI
@@ -59,8 +62,9 @@ class Lcd(Frame):
         self._ltoggles = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text="Toggles phase: ")
         self._ltoggles.grid(row=5, column=0, columnspan=2, sticky=W)
         # the strikes left
-        self._lstrikes = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text="Strikes left: ")
-        self._lstrikes.grid(row=5, column=2, sticky=W)
+        #Use yarn balls for stikes
+        self._lstrikes = Label(self, bg="black", fg="white", font=("Courier New", 24), text="🧶🧶🧶")
+        self._lstrikes.grid(row=1, column=2, sticky=E)
         if (SHOW_BUTTONS):
             # the pause button (pauses the timer)
             self._bpause = tkinter.Button(self, bg="red", fg="white", font=("Courier New", 18), text="Pause", anchor=CENTER, command=self.pause)

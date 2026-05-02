@@ -9,7 +9,7 @@ DEBUG = False         # debug mode?
 RPi = True          # is this running on the RPi?
 SHOW_BUTTONS = False # show the Pause and Quit buttons on the main LCD GUI?
 COUNTDOWN = 300      # the initial bomb countdown value (seconds)
-NUM_STRIKES = 5      # the total strikes allowed before the bomb "explodes"
+NUM_STRIKES = 3      # the total strikes allowed before the bomb "explodes"
 NUM_PHASES = 4       # the total number of initial active bomb phases
 
 # imports
@@ -139,5 +139,5 @@ button_target = genButtonTarget()
 
 # set the bomb's LCD bootup text
 boot_text = f"*Welcome your posible inheritance*\n"\
-            f"*Serial number: {serial}\n"\
+          #  f"*Serial number: {serial}\n"\
             
