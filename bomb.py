@@ -145,7 +145,12 @@ def strike():
     
     # note the strike
     strikes_left -= 1
-    gui._lstrikes["text"] = "🧶" * strikes_left
+    if strikes_left == 2:
+        gui._lyarn3.destroy()
+    elif strikes_left == 1:
+        gui._lyarn2.destroy()
+    elif strikes_left == 0:
+        gui._lyarn1.destroy()
 
 # turns off the bomb
 def turn_off():

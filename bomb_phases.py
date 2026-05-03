@@ -42,7 +42,7 @@ class Lcd(Frame):
         # serial number in top right corner
         self._lserial = Label(self, bg="black", fg="white", font=("Courier New", 18), text=f"Serial: {serial}")
         self._lserial.grid(row=0, column=2, sticky=E)
-        self.pack(fill=BOTH, expand=True)
+        self.pack(fill=BOTH, expand=True)d
 
     # sets up the LCD GUI
     def setup(self):
@@ -63,8 +63,19 @@ class Lcd(Frame):
         self._ltoggles.grid(row=5, column=0, columnspan=2, sticky=W)
         # the strikes left
         #Use yarn balls for stikes
-        self._lstrikes = Label(self, bg="black", fg="white", font=("Courier New", 24), text="🧶🧶🧶")
-        self._lstrikes.grid(row=1, column=2, sticky=E)
+        # create a frame to hold all 3 yarn balls in a row
+        self._yarn_frame = Frame(self, bg="black")
+        self._yarn_frame.grid(row=1, column=2, sticky=E)
+        # load the yarn ball image
+        self._yarn_img = PhotoImage(file="yarnball.png")
+        # create 3 image labels inside the frame
+        self._lyarn1 = Label(self._yarn_frame, bg="black", image=self._yarn_img)
+        self._lyarn1.pack(side=LEFT)
+        self._lyarn2 = Label(self._yarn_frame, bg="black", image=self._yarn_img)
+        self._lyarn2.pack(side=LEFT)
+        self._lyarn3 = Label(self._yarn_frame, bg="black", image=self._yarn_img)
+        self._lyarn3.pack(side=LEFT)
+
         if (SHOW_BUTTONS):
             # the pause button (pauses the timer)
             self._bpause = tkinter.Button(self, bg="red", fg="white", font=("Courier New", 18), text="Pause", anchor=CENTER, command=self.pause)
@@ -95,7 +106,7 @@ class Lcd(Frame):
         self._lwires.destroy()
         self._lbutton.destroy()
         self._ltoggles.destroy()
-        self._lstrikes.destroy()
+        self._yarn_frame.destroy()
         if (SHOW_BUTTONS):
             self._bpause.destroy()
             self._bquit.destroy()
