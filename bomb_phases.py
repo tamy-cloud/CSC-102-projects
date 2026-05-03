@@ -42,7 +42,7 @@ class Lcd(Frame):
         # serial number in top right corner
         self._lserial = Label(self, bg="black", fg="white", font=("Courier New", 18), text=f"Serial: {serial}")
         self._lserial.grid(row=0, column=2, sticky=E)
-        self.pack(fill=BOTH, expand=True)d
+        self.pack(fill=BOTH, expand=True)
 
     # sets up the LCD GUI
     def setup(self):
@@ -67,7 +67,11 @@ class Lcd(Frame):
         self._yarn_frame = Frame(self, bg="black")
         self._yarn_frame.grid(row=1, column=2, sticky=E)
         # load the yarn ball image
-        self._yarn_img = PhotoImage(file="yarnball.png")
+        '''I got this from claud just the resizing part'''
+        from PIL import Image, ImageTk
+        img = Image.open("yarnball.png")
+        img = img.resize((50, 50))
+        self._yarn_img = ImageTk.PhotoImage(img)
         # create 3 image labels inside the frame
         self._lyarn1 = Label(self._yarn_frame, bg="black", image=self._yarn_img)
         self._lyarn1.pack(side=LEFT)
