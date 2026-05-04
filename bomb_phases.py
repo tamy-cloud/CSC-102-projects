@@ -51,8 +51,8 @@ class Lcd(Frame):
     # sets up the LCD GUI
     def setup(self):
         #see if the sound works
-        pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
-        pygame.mixer.music.play(1)
+        pygame.mixer.music.load("freesound_community-ticking-timer-91503.mp3")
+        pygame.mixer.music.play(-1)
         # the timer
         self._ltimer = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text="Time left: ")
         self._ltimer.grid(row=1, column=0, columnspan=3, sticky=W)
@@ -137,6 +137,7 @@ class Lcd(Frame):
         self._lphrase.destroy()
         pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
         pygame.mixer.music.play(1)
+        pygame.mixer.music.stop()
         if (SHOW_BUTTONS):
             self._bpause.destroy()
             self._bquit.destroy()
