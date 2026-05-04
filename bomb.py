@@ -112,6 +112,8 @@ def check_phases():
         if (toggles._defused):
             toggles._running = False
             active_phases -= 1
+            #to show the keypad phase
+            gui.show_phrase()
         # the phase has failed -> strike
         elif (toggles._failed):
             strike()
