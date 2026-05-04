@@ -186,10 +186,11 @@ class Timer(PhaseThread):
                 # wait 1s (default) and continue
                 sleep(self._interval)
                 # the timer has expired -> phase failed (explode)
-                pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.MP3")
-                pygame.mixer.music.play(1)
+                
                 
                 if (self._value == 0):
+                    pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.MP3")
+                pygame.mixer.music.play(1)
                     self._running = False
                 self._value -= 1
             else:
