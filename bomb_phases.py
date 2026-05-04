@@ -48,6 +48,10 @@ class Lcd(Frame):
 
     # sets up the LCD GUI
     def setup(self):
+
+
+        pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.MP3")
+        pygame.mixer.music.play(1)
         # the timer
         self._ltimer = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text="Time left: ")
         self._ltimer.grid(row=1, column=0, columnspan=3, sticky=W)
