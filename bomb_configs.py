@@ -101,11 +101,11 @@ def genTogglesTarget():
     # Create your own logic of making a target number for toggles
     # TODO
     if serial == '@B026DE5':
-        return 7   # 0111
+        return 2   # 0010
     elif serial == '2713980':
         return 9   # 1001
     elif serial == '938-564!':
-        return 8   # 0111
+        return 7   # 0111
 
 def genWiresTarget():
     # Create your own logic of making a target number for wires
