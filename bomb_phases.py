@@ -135,9 +135,9 @@ class Lcd(Frame):
         self._ltoggles.destroy()
         self._yarn_frame.destroy()
         self._lphrase.destroy()
+        pygame.mixer.music.stop()
         pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
         pygame.mixer.music.play(1)
-        pygame.mixer.music.stop()
         if (SHOW_BUTTONS):
             self._bpause.destroy()
             self._bquit.destroy()
