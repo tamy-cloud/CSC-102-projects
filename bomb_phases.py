@@ -319,7 +319,7 @@ class Wires(PhaseThread):
 
 
 def next_color(c):
-    lst = ["R", "G", "B"]
+    lst = ["R", "W", "B"]
     current_index = lst.index(c)
     next_index = (current_index + 1 )% 3
     return lst[next_index]
