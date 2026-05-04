@@ -361,7 +361,7 @@ class Button(PhaseThread):
             if (self._value):
                 # note it
                 self._pressed = True
-                if self._timer._value % 5 == 0 and self._color == "R":
+                if self._timer._value % 2 == 0 and self._color == "R":
                     self._defused = True
             # it is released
             #else:
