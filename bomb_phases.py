@@ -362,19 +362,20 @@ class Button(PhaseThread):
                 # note it
                 self._pressed = True
                 ''' Here we put the logic of our button  '''
+                
             # it is released
-            else:
+            #else:
                 # was it previously pressed?
-                if (self._pressed):
+                #if (self._pressed):
                     # check the release parameters
                     # for R, nothing else is needed
                     # for G or B, a specific digit must be in the timer (sec) when released
-                    if (not self._target or self._target in self._timer._sec):
-                        self._defused = True
-                    else:
-                        self._failed = True
+                    #if (not self._target or self._target in self._timer._sec):
+                    #    self._defused = True
+                    #else:
+                    #    self._failed = True
                      #note that the pushbutton was released
-                    self._pressed = False
+                    #self._pressed = False
             sleep(0.1)
 
     # returns the pushbutton's state as a string
