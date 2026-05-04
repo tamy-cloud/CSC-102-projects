@@ -184,6 +184,9 @@ class Timer(PhaseThread):
                 # wait 1s (default) and continue
                 sleep(self._interval)
                 # the timer has expired -> phase failed (explode)
+                pygame.mixer.music.load("library.mp3")
+            # play the audio (-1 plays the audio forever; 1 plays the audio once, etc)
+            print("Playing library.mp3 forever...")
                 if (self._value == 0):
                     self._running = False
                 self._value -= 1
