@@ -135,6 +135,8 @@ class Lcd(Frame):
         self._ltoggles.destroy()
         self._yarn_frame.destroy()
         self._lphrase.destroy()
+        pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
+        pygame.mixer.music.play(1)
         if (SHOW_BUTTONS):
             self._bpause.destroy()
             self._bquit.destroy()
@@ -212,8 +214,6 @@ class Timer(PhaseThread):
                 
                 
                 if (self._value == 0):
-                    pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
-                    pygame.mixer.music.play(1)
                     self._running = False
                 self._value -= 1
             else:
