@@ -5,6 +5,7 @@
 #################################
 
 # import the configs
+import pygame
 from bomb_configs import *
 # other imports
 from tkinter import *
@@ -14,6 +15,7 @@ from time import sleep
 import os
 import sys
 
+pygame.init()
 #########
 # classes
 #########
@@ -185,8 +187,8 @@ class Timer(PhaseThread):
                 sleep(self._interval)
                 # the timer has expired -> phase failed (explode)
                 pygame.mixer.music.load("library.mp3")
-            # play the audio (-1 plays the audio forever; 1 plays the audio once, etc)
-            print("Playing library.mp3 forever...")
+           
+              pygame.mixer.music.play(1)
                 if (self._value == 0):
                     self._running = False
                 self._value -= 1
