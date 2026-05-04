@@ -31,6 +31,8 @@ class Lcd(Frame):
         self._button = None
         # setup the initial "boot" GUI
         self.setupBoot()
+        
+        
 
     # sets up the LCD "boot" GUI
     def setupBoot(self):
@@ -87,7 +89,7 @@ class Lcd(Frame):
         #for the key pad phrase
         self._lphrase = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text=f"{keypad_phrase} 5823")
         self._lphrase.grid(row=6, column=2, sticky=E)
-        
+        self._lphrase.grid_remove() 
 
         if (SHOW_BUTTONS):
             # the pause button (pauses the timer)
@@ -97,6 +99,18 @@ class Lcd(Frame):
             self._bquit = tkinter.Button(self, bg="red", fg="white", font=("Courier New", 18), text="Quit", anchor=CENTER, command=self.quit)
             self._bquit.grid(row=6, column=2, pady=40)
 
+    #subrotine for the blinking key pad phrase
+    def show_phrase(self):
+    # blink for 3 seconds
+        for _ in range(6):
+            self._lphrase.grid()
+            sleep(0.25)
+            self._lphrase.grid_remove()
+            sleep(0.25)
+        # hide for 5 seconds
+        sleep(5)
+        # repeat
+        self.after(0, self.show_phrase)
     # lets us pause/unpause the timer (7-segment display)
     def setTimer(self, timer):
         self._timer = timer
