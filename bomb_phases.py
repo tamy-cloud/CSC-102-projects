@@ -48,8 +48,7 @@ class Lcd(Frame):
 
     # sets up the LCD GUI
     def setup(self):
-
-
+        #see if the sound works
         pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
         pygame.mixer.music.play(1)
         # the timer
@@ -85,6 +84,10 @@ class Lcd(Frame):
         self._lyarn2.pack(side=LEFT)
         self._lyarn3 = Label(self._yarn_frame, bg="black", image=self._yarn_img)
         self._lyarn3.pack(side=LEFT)
+        #for the key pad phrase
+        self._lphrase = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text=f"{keypad_phrase} 5823")
+        self._lphrase.grid(row=6, column=2, sticky=E)
+        
 
         if (SHOW_BUTTONS):
             # the pause button (pauses the timer)
@@ -117,6 +120,7 @@ class Lcd(Frame):
         self._lbutton.destroy()
         self._ltoggles.destroy()
         self._yarn_frame.destroy()
+        self._lphrase.destroy()
         if (SHOW_BUTTONS):
             self._bpause.destroy()
             self._bquit.destroy()
@@ -128,6 +132,7 @@ class Lcd(Frame):
         # the quit button
         self._bquit = tkinter.Button(self, bg="red", fg="white", font=("Courier New", 18), text="Quit", anchor=CENTER, command=self.quit)
         self._bquit.grid(row=1, column=2, pady=40)
+        '''Mayby add this right here'''
 
     # re-attempts the bomb (after an explosion or a successful defusion)
     def retry(self):
@@ -342,19 +347,20 @@ class Button(PhaseThread):
             if (self._value):
                 # note it
                 self._pressed = True
+                ''' Here we put the logic of our button  '''
             # it is released
-            else:
+            #else:
                 # was it previously pressed?
-                if (self._pressed):
+                #if (self._pressed):
                     # check the release parameters
                     # for R, nothing else is needed
                     # for G or B, a specific digit must be in the timer (sec) when released
-                    if (not self._target or self._target in self._timer._sec):
-                        self._defused = True
-                    else:
-                        self._failed = True
+                    #if (not self._target or self._target in self._timer._sec):
+                    #    self._defused = True
+                    #else:
+                    #    self._failed = True
                     # note that the pushbutton was released
-                    self._pressed = False
+                    #self._pressed = False
             sleep(0.1)
 
     # returns the pushbutton's state as a string

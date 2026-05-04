@@ -118,10 +118,16 @@ def genWiresTarget():
         return 14  # 01110
     
 # generates the keypad combination from a keyword and rotation key
+keypad_phrase = random.choice(["Backass Catwards", "Mewbinachi"])
+
 def genKeypadTarget():
     # Create your own logic of making a keypad combination number if needed
-    # TODO
-    return "26863"
+    # TODOgi
+    if keypad_phrase == "Backass Catwards":
+        return "2590"
+    elif keypad_phrase == "Mewbinachi":
+        return "2686"
+    
 '''
 We can take away to serial numre and do the buttons or something
 '''
