@@ -50,7 +50,7 @@ class Lcd(Frame):
     def setup(self):
 
 
-        pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.MP3")
+        pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
         pygame.mixer.music.play(1)
         # the timer
         self._ltimer = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text="Time left: ")
@@ -193,7 +193,7 @@ class Timer(PhaseThread):
                 
                 
                 if (self._value == 0):
-                    pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.MP3")
+                    pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
                     pygame.mixer.music.play(1)
                     self._running = False
                 self._value -= 1
