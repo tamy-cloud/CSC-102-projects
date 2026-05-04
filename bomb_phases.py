@@ -40,7 +40,7 @@ class Lcd(Frame):
         self._lscroll = Label(self, bg="black", fg="white", font=("Courier New", 18), text="", justify=LEFT)
         self._lscroll.grid(row=0, column=0, columnspan=2, sticky=W)
         # serial number in top right corner
-        self._lserial = Label(self, bg="black", fg="white", font=("Courier New", 18), text=f"Serial: {serial}")
+        self._lserial = Label(self, bg="black", fg="white", font=("Courier New", 18), text=f"sn{serial}")
         self._lserial.grid(row=0, column=2, sticky=E)
         self.pack(fill=BOTH, expand=True)
 
@@ -354,6 +354,7 @@ class Button(PhaseThread):
         else:
             return str("Pressed" if self._value else "Released")
 
+
 # the toggle switches phase
 class Toggles(PhaseThread):
     def __init__(self, component, target, name="Toggles"):
@@ -363,9 +364,7 @@ class Toggles(PhaseThread):
     def run(self):
         # TODO
         #done by tamara
-        
-        old_value = 999
-        
+       
         self._running = True
         while (self._running):
             self._value = [pin.value for pin in self._component]
@@ -373,9 +372,6 @@ class Toggles(PhaseThread):
             # convert toggle states to a number (binary -> decimal)
             total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
             
-            if total != old_value:
-                old_value = total
-                print(total)
                 
             #wait check for 3 seconds
 
@@ -389,4 +385,5 @@ class Toggles(PhaseThread):
             return "DEFUSED"
         else:
             # TODO
-            return "Not quite"
+            binary = "".join([str(int(v)) for v in self._value])
+            return f"{binary}/{int(binary, 2)}"

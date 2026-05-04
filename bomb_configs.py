@@ -15,6 +15,7 @@ NUM_PHASES = 4       # the total number of initial active bomb phases
 # imports
 from random import randint, shuffle, choice
 from string import ascii_uppercase
+import random
 if (RPi):
     import board
     from adafruit_ht16k33.segments import Seg7x4
@@ -92,18 +93,30 @@ if statements until you die
 def genSerial():
     # Create your own logic of making a serial number (if needed)
     # TODO
-    
-    return "B026DE5"
+    listS = ['@B026DE5', '2713980', '938-564!']
+    rand_sn = random.choice(listS)
+    return rand_sn
 
 def genTogglesTarget():
     # Create your own logic of making a target number for toggles
     # TODO
-    return 10
+    if serial == '@B026DE5':
+        return 7   # 0111
+    elif serial == '2713980':
+        return 9   # 1001
+    elif serial == '938-564!':
+        return 8   # 0111
 
 def genWiresTarget():
     # Create your own logic of making a target number for wires
     # TODO
-    return 5
+    if serial == '@B026DE5':
+        return 21  # 10101
+    elif serial == '2713980':
+        return 27  # 11011
+    elif serial == '938-564!':
+        return 14  # 01110
+    
 # generates the keypad combination from a keyword and rotation key
 def genKeypadTarget():
     # Create your own logic of making a keypad combination number if needed
