@@ -88,14 +88,14 @@ class Lcd(Frame):
         self._lyarn3.pack(side=LEFT)
         #for the key pad phrase
         self._lphrase = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text=f"{keypad_phrase} 5823")
-        self._lphrase.grid(row=6, column=2, sticky=E)
+        self._lphrase.grid(row=5, column=3, sticky=E)
         self._lphrase.grid_remove()
         #
         cat = Image.open(cat_image)
         cat = cat.resize((100, 100))
         self._cat_img = ImageTk.PhotoImage(cat)
         self._lcat = Label(self, bg="black", image=self._cat_img)
-        self._lcat.grid(row=6, column=2, sticky=SE)
+        self._lcat.grid(row=8, column=2, sticky=SE)
 
         if (SHOW_BUTTONS):
             # the pause button (pauses the timer)
