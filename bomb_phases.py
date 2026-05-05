@@ -88,7 +88,7 @@ class Lcd(Frame):
         self._lyarn3.pack(side=LEFT)
         #for the key pad phrase
         self._lphrase = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text=f"{keypad_phrase} 5823")
-        self._lphrase.grid(row=5, column=3, sticky=E)
+        self._lphrase.grid(row=5, column=1, sticky=E)
         self._lphrase.grid_remove()
         #
         cat = Image.open(cat_image)
