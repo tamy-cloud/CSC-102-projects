@@ -97,14 +97,17 @@ def genSerial():
     rand_sn = random.choice(listS)
     return rand_sn
 
+#Cat images for the cat lady grand may but I love cats so tis is just for me honestly
+cat_image = random.choice(["cat1.png", "cat2.png", "cat3.png"])
+
 def genTogglesTarget():
     # Create your own logic of making a target number for toggles
     # TODO
-    if serial == '@B026DE5':
+    if cat_image == "cat1.png":
         return 2   # 0010
-    elif serial == '2713980':
+    elif cat_image == "cat2.png":
         return 9   # 1001
-    elif serial == '938-564!':
+    elif cat_image == "cat3.png":
         return 7   # 0111
 
 def genWiresTarget():

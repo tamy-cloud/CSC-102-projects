@@ -89,7 +89,13 @@ class Lcd(Frame):
         #for the key pad phrase
         self._lphrase = Label(self, bg="black", fg="#ff6600", font=("Courier New", 18), text=f"{keypad_phrase} 5823")
         self._lphrase.grid(row=6, column=2, sticky=E)
-        self._lphrase.grid_remove() 
+        self._lphrase.grid_remove()
+        #
+        cat = Image.open(cat_image)
+        cat = cat.resize((100, 100))
+        self._cat_img = ImageTk.PhotoImage(cat)
+        self._lcat = Label(self, bg="black", image=self._cat_img)
+        self._lcat.grid(row=6, column=2, sticky=SE)
 
         if (SHOW_BUTTONS):
             # the pause button (pauses the timer)
@@ -139,6 +145,7 @@ class Lcd(Frame):
         self._ltoggles.destroy()
         self._yarn_frame.destroy()
         self._lphrase.destroy()
+        self._lcat.destroy()
         pygame.mixer.music.stop()
         pygame.mixer.music.load("virtual_vibes-cat-meow-sound-383823.mp3")
         pygame.mixer.music.play(1)
@@ -419,8 +426,10 @@ class Toggles(PhaseThread):
                         self._defused = True
                     else:
                         self._wrong = True
+                        self._failed = True
                         sleep(3)
                         self._wrong = False
+                        self._failed = False
             sleep(0.1)
 
             #if (total == self._target):
