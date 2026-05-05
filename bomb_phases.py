@@ -428,7 +428,7 @@ class Toggles(PhaseThread):
             #sleep(0.1)
 
     # returns the toggle switches state as a string
-    def __str__(self)
+    def __str__(self):
         if (self._defused):
             return "DEFUSED"
         elif (self._wrong):
