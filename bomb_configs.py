@@ -157,6 +157,6 @@ keypad_target = genKeypadTarget()
 button_target = genButtonTarget()
 
 # set the bomb's LCD bootup text
-boot_text = f"*Welcome your posible inheritance*\n"\
+boot_text = f"Welcome to your possible inheritance\n"\
           #  f"*Serial number: {serial}\n"\
             
