@@ -403,20 +403,21 @@ class Toggles(PhaseThread):
             #self._value = self._value.reverse()
             # convert toggle states to a number (binary -> decimal)
             total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
-                
+            
+            # claude helped me with some od the logic of when it will start to check if ad answer is wrong or right
+            if total > 0:
             #wait check for 3 seconds
-            sleep(3)
-            new_total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
-            
-            
-            if new_total == total:
-                if new_total == self._target:
-                    self._defused = True
-                else:
-                    self._wrong = True
-                    self._failed = True
-                    sleep(3)
-                    self._wrong = False
+                sleep(3)
+                new_total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
+                
+                if new_total == total:
+                    if new_total == self._target:
+                        self._defused = True
+                    else:
+                        self._wrong = True
+                        self._failed = True
+                        sleep(3)
+                        self._wrong = False
             sleep(0.1)
 
             #if (total == self._target):
