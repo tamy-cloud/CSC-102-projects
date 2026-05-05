@@ -408,7 +408,9 @@ class Toggles(PhaseThread):
             if total > 0:
             #wait check for 3 seconds
                 sleep(3)
-                new_total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
+                #new_total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
+                self._value = [pin.value for pin in self._component]
+                new_total = int("".join([str(int(v)) for v in reversed(self._value)]), 2)
                 
                 if new_total == total:
                     if new_total == self._target:
@@ -437,3 +439,6 @@ class Toggles(PhaseThread):
             # TODO
             binary = "".join([str(int(v)) for v in reversed(self._value)])
             return f"{binary}/{int(binary, 2)}"
+        
+        
+        
