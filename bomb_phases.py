@@ -402,7 +402,7 @@ class Toggles(PhaseThread):
             self._value = [pin.value for pin in self._component]
             #self._value = self._value.reverse()
             # convert toggle states to a number (binary -> decimal)
-            total = sum([self._value[i] * (2 ** i) for i in range(len(self._value))])
+            total = int("".join([str(int(v)) for v in reversed(self._value)]), 2)
             
             # claude helped me with some od the logic of when it will start to check if ad answer is wrong or right
             if total > 0:
@@ -435,5 +435,5 @@ class Toggles(PhaseThread):
             return ""
         else:
             # TODO
-            binary = "".join([str(int(v)) for v in self._value])
+            binary = "".join([str(int(v)) for v in reversed(self._value)])
             return f"{binary}/{int(binary, 2)}"
