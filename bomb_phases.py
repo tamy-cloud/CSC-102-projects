@@ -100,17 +100,21 @@ class Lcd(Frame):
             self._bquit.grid(row=6, column=2, pady=40)
 
     #subrotine for the blinking key pad phrase
-    def show_phrase(self):
-    # blink for 3 seconds
-        for _ in range(6):
-            self._lphrase.grid()
-            sleep(0.25)
+    def show_phrase(self, visible=True, blinks=0):
+        # I got this fro claude hopefully it workds
+        if not hasattr(self, '_lphrase'):
+            return
+        if blinks < 6:
+            # blink on and off
+            if visible:
+                self._lphrase.grid()
+            else:
+                self._lphrase.grid_remove()
+            self.after(250, self.show_phrase, not visible, blinks + 1)
+        else:
+            # done blinking, hide for 5 seconds then repeat
             self._lphrase.grid_remove()
-            sleep(0.25)
-        # hide for 5 seconds
-        sleep(5)
-        # repeat
-        self.after(0, self.show_phrase)
+            self.after(5000, self.show_phrase, True, 0)
     # lets us pause/unpause the timer (7-segment display)
     def setTimer(self, timer):
         self._timer = timer
@@ -412,7 +416,6 @@ class Toggles(PhaseThread):
                 
                 if new_total == total:
                     if new_total == self._target:
-                        print(f"TARGET MET! total={new_total} target={self._target}")
                         self._defused = True
                     else:
                         self._wrong = True
@@ -425,14 +428,11 @@ class Toggles(PhaseThread):
             #sleep(0.1)
 
     # returns the toggle switches state as a string
-    def __str__(self):
-        print(f"__str__ called, defused={self._defused}")
+    def __str__(self)
         if (self._defused):
             return "DEFUSED"
         elif (self._wrong):
             return "WRONG"
-        elif (self._value is None):
-            return ""
         else:
             # TODO
             binary = "".join([str(int(v)) for v in reversed(self._value)])

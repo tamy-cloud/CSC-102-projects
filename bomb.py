@@ -119,7 +119,7 @@ def check_phases():
             strike()
             # reset the toggles
             toggles._failed = False
-#I think we change to yarn balls somewhere around here
+    #I think we change to yarn balls somewhere around here
     # note the strikes on the GUI
     # too many strikes -> explode!
     if (strikes_left == 0):
