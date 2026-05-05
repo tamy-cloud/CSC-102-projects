@@ -412,6 +412,7 @@ class Toggles(PhaseThread):
                 
                 if new_total == total:
                     if new_total == self._target:
+                        print(f"TARGET MET! total={new_total} target={self._target}")
                         self._defused = True
                     else:
                         self._wrong = True
