@@ -155,18 +155,26 @@ class Lcd(Frame):
 
         # reconfigure the GUI
         # the retry button
-        self._bretry = tkinter.Button(self, bg="red", fg="white", font=("Courier New", 18), text="Retry", anchor=CENTER, command=self.retry)
-        self._bretry.grid(row=1, column=0, pady=40)
-        # the quit button
-        self._bquit = tkinter.Button(self, bg="red", fg="white", font=("Courier New", 18), text="Quit", anchor=CENTER, command=self.quit)
-        self._bquit.grid(row=1, column=2, pady=40)
-        '''Mayby add this right here'''
+        if success:
+            # claude helped me with the font of the test
+            # winning screen
+            self._ldefused = Label(self, bg="black", fg="#00ff00", font=("Courier New", 72, "bold"), text="DEFUSED")
+            self._ldefused.grid(row=1, column=0, columnspan=3, pady=40)
+            self._lcongrats = Label(self, bg="black", fg="#00ff00", font=("Courier New", 36), text="Congratulations!")
+            self._lcongrats.grid(row=2, column=0, columnspan=3)
+        else:
+            # losing screen
+            self._lboom = Label(self, bg="black", fg="red", font=("Courier New", 72, "bold"), text="BOOM!")
+            self._lboom.grid(row=1, column=0, columnspan=3, pady=40)
+            self._ldead = Label(self, bg="black", fg="red", font=("Courier New", 36), text="The cats get everything.")
+            self._ldead.grid(row=2, column=0, columnspan=3)
 
-    # re-attempts the bomb (after an explosion or a successful defusion)
-    def retry(self):
-        # re-launch the program (and exit this one)
-        os.execv(sys.executable, ["python3"] + [sys.argv[0]])
-        exit(0)
+
+            # re-attempts the bomb (after an explosion or a successful defusion)
+            def retry(self):
+                # re-launch the program (and exit this one)
+                os.execv(sys.executable, ["python3"] + [sys.argv[0]])
+                exit(0)
 
     # quits the GUI, resetting some components
     def quit(self):
