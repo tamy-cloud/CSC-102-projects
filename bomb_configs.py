@@ -127,9 +127,9 @@ def genKeypadTarget():
     # Create your own logic of making a keypad combination number if needed
     # TODOgi
     if keypad_phrase == "Backass Catwards":
-        return "2590"
+        return "1890"
     elif keypad_phrase == "Mewbinachi":
-        return "2686"
+        return "5357"
     
 '''
 We can take away to serial numre and do the buttons or something
